@@ -108,24 +108,25 @@
 
 
 
-  <meta name="description" content="Linux &amp; Android 底层开发">
-<meta name="keywords" content="勤奋 自律 热情 善良">
-<meta property="og:type" content="website">
-<meta property="og:title" content="撸八哥">
-<meta property="og:url" content="https://shuaishuailu.github.io/index.html">
+  <meta name="description" content="[TOC] 需求 防止设备连接其他开放wifi，导致正常通讯异常；实现layout：在wifi 设置的高级选项中添加过滤开关及过滤关键字 文件：android\packages\apps\Settings\res\xml\wifi_advanced_settings.xml12345678910111213&amp;lt;SwitchPreference            android:key=&amp;q">
+<meta name="keywords" content="Android Settings &amp; frameworks">
+<meta property="og:type" content="article">
+<meta property="og:title" content="wifi系统设置依据名称过滤">
+<meta property="og:url" content="https://shuaishuailu.github.io/2018/08/14/wifi系统设置依据名称过滤/index.html">
 <meta property="og:site_name" content="撸八哥">
-<meta property="og:description" content="Linux &amp; Android 底层开发">
+<meta property="og:description" content="[TOC] 需求 防止设备连接其他开放wifi，导致正常通讯异常；实现layout：在wifi 设置的高级选项中添加过滤开关及过滤关键字 文件：android\packages\apps\Settings\res\xml\wifi_advanced_settings.xml12345678910111213&amp;lt;SwitchPreference            android:key=&amp;q">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-08-14T07:52:16.700Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="撸八哥">
-<meta name="twitter:description" content="Linux &amp; Android 底层开发">
+<meta name="twitter:title" content="wifi系统设置依据名称过滤">
+<meta name="twitter:description" content="[TOC] 需求 防止设备连接其他开放wifi，导致正常通讯异常；实现layout：在wifi 设置的高级选项中添加过滤开关及过滤关键字 文件：android\packages\apps\Settings\res\xml\wifi_advanced_settings.xml12345678910111213&amp;lt;SwitchPreference            android:key=&amp;q">
 
 
 
 
 
 
-  <link rel="canonical" href="https://shuaishuailu.github.io/"/>
+  <link rel="canonical" href="https://shuaishuailu.github.io/2018/08/14/wifi系统设置依据名称过滤/"/>
 
 
 
@@ -135,7 +136,7 @@
   };
 </script>
 
-  <title>撸八哥</title>
+  <title>wifi系统设置依据名称过滤 | 撸八哥</title>
   
 
 
@@ -182,8 +183,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -224,7 +224,7 @@
         
         
           
-          <li class="menu-item menu-item-home menu-item-active">
+          <li class="menu-item menu-item-home">
     <a href="/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Startseite</a>
   </li>
@@ -268,9 +268,9 @@
           
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -302,11 +302,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/14/wifi系统设置依据名称过滤/" itemprop="url">
-                  wifi系统设置依据名称过滤
-                </a>
+          <h1 class="post-title" itemprop="name headline">wifi系统设置依据名称过滤
               
             
           </h1>
@@ -369,9 +365,7 @@
       
 
       
-        
-          
-            <p>[TOC]</p>
+        <p>[TOC]</p>
 <h1 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h1><ul>
 <li>防止设备连接其他开放wifi，导致正常通讯异常；<h1 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h1><h2 id="layout：在wifi-设置的高级选项中添加过滤开关及过滤关键字"><a href="#layout：在wifi-设置的高级选项中添加过滤开关及过滤关键字" class="headerlink" title="layout：在wifi 设置的高级选项中添加过滤开关及过滤关键字"></a>layout：在wifi 设置的高级选项中添加过滤开关及过滤关键字</h2></li>
 <li>文件：android\packages\apps\Settings\res\xml\wifi_advanced_settings.xml<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;SwitchPreference</span><br><span class="line">            android:key=&quot;wifi_filter&quot;</span><br><span class="line">            android:title=&quot;@string/wifi_filter&quot;</span><br><span class="line">            android:summaryOn=&quot;@string/wifi_filter_summary_on&quot;</span><br><span class="line">            android:summaryOff=&quot;@string/wifi_filter_summary_off&quot;</span><br><span class="line">            android:persistent=&quot;false&quot; /&gt;</span><br><span class="line">    </span><br><span class="line">&lt;EditTextPreference</span><br><span class="line">            android:key=&quot;wifi_filter_name&quot;</span><br><span class="line">            android:title=&quot;@string/wifi_filter_name&quot;</span><br><span class="line">            android:summary=&quot;@string/wifi_filter_name_summary&quot;</span><br><span class="line">            android:dependency=&quot;wifi_filter&quot;</span><br><span class="line">            android:persistent=&quot;false&quot; /&gt;</span><br></pre></td></tr></table></figure>
@@ -404,8 +398,6 @@
 <li>按照提示，执行：make update-api，然后在进行编译通过；</li>
 </ol>
 
-          
-        
       
     </div>
 
@@ -423,158 +415,36 @@
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://shuaishuailu.github.io/2018/08/13/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="陆帅帅">
-      <meta itemprop="description" content="Linux & Android 底层开发">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="撸八哥">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/13/hello-world/" itemprop="url">
-                  Hello World
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-
-              
-                
-              
-
-              <time title="Post created: 2018-08-13 22:24:19" itemprop="dateCreated datePublished" datetime="2018-08-13T22:24:19+08:00">2018-08-13</time>
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-
+            <a href="/tags/Android-Settings-frameworks/" rel="tag"># Android Settings & frameworks</a>
           
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
       
 
       
       
-        <div class="post-eof"></div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/13/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
       
     </footer>
   </div>
@@ -584,14 +454,15 @@
   </article>
 
 
-    
-  </section>
-
-  
+  </div>
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -612,8 +483,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -671,6 +551,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#需求"><span class="nav-number">1.</span> <span class="nav-text">需求</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实现"><span class="nav-number">2.</span> <span class="nav-text">实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#layout：在wifi-设置的高级选项中添加过滤开关及过滤关键字"><span class="nav-number">2.1.</span> <span class="nav-text">layout：在wifi 设置的高级选项中添加过滤开关及过滤关键字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#过滤实现"><span class="nav-number">2.2.</span> <span class="nav-text">过滤实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#利用SettingsProvider保存配置"><span class="nav-number">2.3.</span> <span class="nav-text">利用SettingsProvider保存配置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#问题"><span class="nav-number">3.</span> <span class="nav-text">问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#编译出错：修改SettingsProvider"><span class="nav-number">3.1.</span> <span class="nav-text">编译出错：修改SettingsProvider</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -801,6 +697,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.0"></script>
+
+
 
   
 
