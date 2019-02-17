@@ -108,19 +108,19 @@
 
 
 
-  <meta name="description" content="处理器处理器1. 通用处理器 中央处理器结构：冯诺依曼、哈佛；  2. 数字信号处理器 主要针对通信、图像、语音、视频，分为定点DSP、浮点DSP  存储器 分类：ROM、Flash（需要考虑负载均衡）、RAM、光/磁介质； NOR和NAND 为主流： NOR:可芯片内执行、可以使用SPI接口访问； NAND较NOR来容量大、价格低；    接口与总线 串口  232 通信距离短（实际上也只能用在">
+  <meta name="description" content="处理器1. 通用处理器 中央处理器结构：冯诺依曼、哈佛；  2. 数字信号处理器 主要针对通信、图像、语音、视频，分为定点DSP、浮点DSP  存储器 分类：ROM、Flash（需要考虑负载均衡）、RAM、光/磁介质； NOR和NAND 为主流： NOR:可芯片内执行、可以使用SPI接口访问； NAND较NOR来容量大、价格低；    接口与总线 串口  232 通信距离短（实际上也只能用在50米">
 <meta name="keywords" content="linux驱动">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux驱动——驱动设计的硬件基础">
 <meta property="og:url" content="https://shuaishuailu.github.io/2019/02/17/Linux驱动——驱动设计的硬件基础/index.html">
 <meta property="og:site_name" content="优雅的代码">
-<meta property="og:description" content="处理器处理器1. 通用处理器 中央处理器结构：冯诺依曼、哈佛；  2. 数字信号处理器 主要针对通信、图像、语音、视频，分为定点DSP、浮点DSP  存储器 分类：ROM、Flash（需要考虑负载均衡）、RAM、光/磁介质； NOR和NAND 为主流： NOR:可芯片内执行、可以使用SPI接口访问； NAND较NOR来容量大、价格低；    接口与总线 串口  232 通信距离短（实际上也只能用在">
+<meta property="og:description" content="处理器1. 通用处理器 中央处理器结构：冯诺依曼、哈佛；  2. 数字信号处理器 主要针对通信、图像、语音、视频，分为定点DSP、浮点DSP  存储器 分类：ROM、Flash（需要考虑负载均衡）、RAM、光/磁介质； NOR和NAND 为主流： NOR:可芯片内执行、可以使用SPI接口访问； NAND较NOR来容量大、价格低；    接口与总线 串口  232 通信距离短（实际上也只能用在50米">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://gss1.bdstatic.com/9vo3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=02c83d10f21fbe090853cb460a096756/bd3eb13533fa828bdf1d9f85fd1f4134970a5a9d.jpg">
-<meta property="og:updated_time" content="2019-02-17T11:23:16.527Z">
+<meta property="og:updated_time" content="2019-02-17T11:25:53.028Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux驱动——驱动设计的硬件基础">
-<meta name="twitter:description" content="处理器处理器1. 通用处理器 中央处理器结构：冯诺依曼、哈佛；  2. 数字信号处理器 主要针对通信、图像、语音、视频，分为定点DSP、浮点DSP  存储器 分类：ROM、Flash（需要考虑负载均衡）、RAM、光/磁介质； NOR和NAND 为主流： NOR:可芯片内执行、可以使用SPI接口访问； NAND较NOR来容量大、价格低；    接口与总线 串口  232 通信距离短（实际上也只能用在">
+<meta name="twitter:description" content="处理器1. 通用处理器 中央处理器结构：冯诺依曼、哈佛；  2. 数字信号处理器 主要针对通信、图像、语音、视频，分为定点DSP、浮点DSP  存储器 分类：ROM、Flash（需要考虑负载均衡）、RAM、光/磁介质； NOR和NAND 为主流： NOR:可芯片内执行、可以使用SPI接口访问； NAND较NOR来容量大、价格低；    接口与总线 串口  232 通信距离短（实际上也只能用在50米">
 <meta name="twitter:image" content="https://gss1.bdstatic.com/9vo3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=02c83d10f21fbe090853cb460a096756/bd3eb13533fa828bdf1d9f85fd1f4134970a5a9d.jpg">
 
 
@@ -329,7 +329,7 @@
                 
               
 
-              <time title="创建时间：2019-02-17 16:22:01 / 修改时间：19:23:16" itemprop="dateCreated datePublished" datetime="2019-02-17T16:22:01+08:00">2019-02-17</time>
+              <time title="创建时间：2019-02-17 16:22:01 / 修改时间：19:25:53" itemprop="dateCreated datePublished" datetime="2019-02-17T16:22:01+08:00">2019-02-17</time>
             
 
             
@@ -385,7 +385,7 @@
       
 
       
-        <h2 id="处理器"><a href="#处理器" class="headerlink" title="处理器"></a>处理器</h2><h2 id="处理器-1"><a href="#处理器-1" class="headerlink" title="处理器"></a>处理器</h2><h3 id="1-通用处理器"><a href="#1-通用处理器" class="headerlink" title="1. 通用处理器"></a>1. 通用处理器</h3><ul>
+        <h2 id="处理器"><a href="#处理器" class="headerlink" title="处理器"></a>处理器</h2><h3 id="1-通用处理器"><a href="#1-通用处理器" class="headerlink" title="1. 通用处理器"></a>1. 通用处理器</h3><ul>
 <li>中央处理器结构：冯诺依曼、哈佛；</li>
 </ul>
 <h3 id="2-数字信号处理器"><a href="#2-数字信号处理器" class="headerlink" title="2. 数字信号处理器"></a>2. 数字信号处理器</h3><ul>
@@ -642,7 +642,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#处理器"><span class="nav-number">1.</span> <span class="nav-text">处理器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#处理器-1"><span class="nav-number">2.</span> <span class="nav-text">处理器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-通用处理器"><span class="nav-number">2.1.</span> <span class="nav-text">1. 通用处理器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-数字信号处理器"><span class="nav-number">2.2.</span> <span class="nav-text">2. 数字信号处理器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#存储器"><span class="nav-number">3.</span> <span class="nav-text">存储器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#接口与总线"><span class="nav-number">4.</span> <span class="nav-text">接口与总线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CPLD和FPGA"><span class="nav-number">5.</span> <span class="nav-text">CPLD和FPGA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原理图分析"><span class="nav-number">6.</span> <span class="nav-text">原理图分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#硬件时序分析"><span class="nav-number">7.</span> <span class="nav-text">硬件时序分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#芯片数据手册阅读方法"><span class="nav-number">8.</span> <span class="nav-text">芯片数据手册阅读方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#仪器仪表使用"><span class="nav-number">9.</span> <span class="nav-text">仪器仪表使用</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#处理器"><span class="nav-number">1.</span> <span class="nav-text">处理器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-通用处理器"><span class="nav-number">1.1.</span> <span class="nav-text">1. 通用处理器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-数字信号处理器"><span class="nav-number">1.2.</span> <span class="nav-text">2. 数字信号处理器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#存储器"><span class="nav-number">2.</span> <span class="nav-text">存储器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#接口与总线"><span class="nav-number">3.</span> <span class="nav-text">接口与总线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CPLD和FPGA"><span class="nav-number">4.</span> <span class="nav-text">CPLD和FPGA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原理图分析"><span class="nav-number">5.</span> <span class="nav-text">原理图分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#硬件时序分析"><span class="nav-number">6.</span> <span class="nav-text">硬件时序分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#芯片数据手册阅读方法"><span class="nav-number">7.</span> <span class="nav-text">芯片数据手册阅读方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#仪器仪表使用"><span class="nav-number">8.</span> <span class="nav-text">仪器仪表使用</span></a></li></ol></div>
             
 
           </div>
